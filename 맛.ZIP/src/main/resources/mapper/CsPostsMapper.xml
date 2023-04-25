@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="CsPostsVO">
+	
+	<insert id="create" parameterType="CsPostsVO">
+		insert into cs_posts values (#{user_id}, #{category}, #{title}, #{content}, #{store}, #{created_date})
+	</insert>
+	
+	<update id="up"  parameterType="CsPostsVO">
+		update cs_posts set category = #{category}, title = #{title}, content = #{content}, update_date = #{update_date}
+		where post_id = #{post_id} and user_id = #{user_id}
+	</update>
+	
+	<delete id="del"  parameterType="CsPostsVO">
+		delete from cs_posts 
+		where post_id = #{post_id} and user_id = #{user_id}
+	</delete>
+	
+	
+	<!-- 조건별 검색 -->
+	<select id="one1" parameterType="int" resultType="CsPostsVO">
+		select * from cs_posts where post_id = #{post_id}
+	</select>
+	
+	<select id="one2" parameterType="String" resultType="CsPostsVO">
+		select * from cs_posts where user_id = #{user_id}
+	</select>
+	
+	
+	<!-- 카테고리별 전체 검색 -->
+	<select id="category" parameterType="String" resultType="CsPostsVO">
+		select * from cs_posts where category = #{category}
+	</select>
+	
+	
+	<!-- 전체검색 list -->
+	<select id="all"  resultType="CsPostsVO">
+		select * from cs_posts
+	</select>	
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
