@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="CsPostsVO">
+	
+	<insert id="create" parameterType="CsPostsVO">
+		insert into MZ.cs_posts (user_id, category, title, content, store, created_date, update_date, favorite_food_cg)
+		values (#{user_id}, #{category}, #{title}, #{content}, #{store}, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, #{favorite_food_cg})
+	</insert>
+	
+	<update id="up"  parameterType="CsPostsVO">
+		update MZ.cs_posts set 
+			category = #{category}, 
+			title = #{title}, 
+			content = #{content}, 
+			update_date = CURRENT_TIMESTAMP, 
+			#{favorite_food_cg}
+		where post_id = #{post_id} and user_id = #{user_id}
+	</update>
+	
+	<delete id="del"  parameterType="CsPostsVO">
+		delete from MZ.cs_posts 
+		where post_id = #{post_id} and user_id = #{user_id}
+	</delete>
+	
+	
+	<!-- 조건별 검색 -->
+	<select id="one1" parameterType="int" resultType="CsPostsVO">
+		select * from MZ.cs_posts where post_id = #{post_id}
+	</select>
+	
+	<select id="one2" parameterType="String" resultType="CsPostsVO">
+		select * from MZ.cs_posts where user_id = #{user_id}
+	</select>
+	
+	<select id="one3" parameterType="String" resultType="CsPostsVO">
+		select * from MZ.cs_posts where favorite_food_cg = #{favorite_food_cg}
+	</select>
+	
+	
+	<!-- 카테고리별 전체 검색 -->
+	<select id="category" parameterType="String" resultType="CsPostsVO">
+		select * from MZ.cs_posts where category = #{category}
+	</select>
+	
+	
+	<!-- 전체검색 list -->
+	<select id="all"  resultType="CsPostsVO">
+		select * from MZ.cs_posts
+	</select>	
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+

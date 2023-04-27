@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="CsMemberVO">
+	
+	<select id="login" parameterType="CsMemberVO" resultType="CsMemberVO">
+		select * from MZ.cs_member where user_id = #{user_id} and user_pw = #{user_pw}
+	</select>
+	
+	<insert id="join" parameterType="CsPostsVO">
+		insert into MZ.cs_member values (#{user_id}, #{user_pw}, #{username})
+	</insert>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+

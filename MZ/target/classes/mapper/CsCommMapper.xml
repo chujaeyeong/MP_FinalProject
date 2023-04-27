@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="CsCommVO">
+	
+	<insert id="create" parameterType="CsCommVO">
+		insert into MZ.cs_comm values (#{post_id}, #{user_id}, #{content}, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
+	</insert>
+	
+	<delete id="del"  parameterType="CsCommVO">
+		delete from MZ.cs_comm 
+		where comm_id = #{comm_id} and user_id = #{user_id}
+	</delete>
+	
+	<update id="up"  parameterType="CsCommVO">
+		update MZ.cs_comm set 
+			content = #{content}, 
+			update_date = CURRENT_TIMESTAMP
+		where comm_id = #{comm_id} and user_id = #{user_id}
+	</update>
+	
+	<select id="commList" parameterType="int" resultType="CsCommVO">
+		select * from MZ.cs_comm where post_id = #{post_id}
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
